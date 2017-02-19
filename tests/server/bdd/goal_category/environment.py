@@ -1,4 +1,4 @@
-import guhguh
+from server import guhguh
 
 
 def before_all(context):

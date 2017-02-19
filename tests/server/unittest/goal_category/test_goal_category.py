@@ -1,16 +1,17 @@
 import unittest as ut
-import guhguh
+
 from pyquery import PyQuery as Pq
+
+from server import guhguh
 
 
 class TestGoalCategory(ut.TestCase):
     app = guhguh.app.test_client()
 
-
     def setUp(self):
         guhguh.app.config['TESTING'] = True
 
-    def test_something(self):
+    def test_goal_categories_title_is_goal_categories(self):
         response = self.app.get('/goal-category')
         self.assertEqual(200, response.status_code)
         actual_html = Pq(response.data)

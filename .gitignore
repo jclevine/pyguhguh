@@ -97,3 +97,6 @@ venv2/
 
 # Rope project settings
 .ropeproject
+
+# Node Stuff
+node_modules/

@@ -89,6 +89,8 @@ celerybeat-schedule
 .venv
 venv/
 ENV/
+# Second venv for python2 testing.
+venv2/
 
 # Spyder project settings
 .spyderproject

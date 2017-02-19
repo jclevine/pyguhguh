@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-goal_category = Blueprint(name='goal_category', import_name=__name__)
+goal_category = Blueprint(name='goal_category', import_name=__name__, template_folder='templates')
 
 
 @goal_category.route('/goal-category')

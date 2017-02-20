@@ -1,5 +1,5 @@
-const path = require('path');
-var CompressionPlugin = require('compression-webpack-plugin');
+const path = require('path')
+var CompressionPlugin = require('compression-webpack-plugin')
 
 // TODO-FUTURE: jlevine - Maybe use CommonsChunk pluging if there's a lot of common code
 // TODO-FUTURE: jlevine - https://webpack.js.org/plugins/commons-chunk-plugin/
@@ -12,9 +12,9 @@ var CompressionPlugin = require('compression-webpack-plugin');
 //   'process.env.NODE_ENV': JSON.stringify('production')
 // };
 
-const PROD = process.env.NODE_ENV === 'production';
-const FLASK_JS_PATH = path.resolve(__dirname, '..', 'server', 'static', 'js');
-const OUTPUT_PATH = PROD ? path.resolve(__dirname, 'dist') : FLASK_JS_PATH;
+const PROD = process.env.NODE_ENV === 'production'
+const FLASK_JS_PATH = path.resolve(__dirname, '..', 'server', 'static', 'js')
+const OUTPUT_PATH = PROD ? path.resolve(__dirname, 'dist') : FLASK_JS_PATH
 
 module.exports = {
   // TODO: jlevine - Change dev to 'cheap-module-eval-source-map' if compilation takes a while.
@@ -32,11 +32,9 @@ module.exports = {
   // target: 'web',
   output: {
     path: OUTPUT_PATH,
-    // TODO: jlevine - Uncomment if you feel there's a need for prod rename of output dir
-    // path: PROD ? __dirname + '/build' : __dirname + '/dist',
     filename: 'bundle.js',
     // TODO: jlevine - I think this is a performance optimization, so only do it for prod?
-    devtoolLineToLine: PROD,
+    devtoolLineToLine: PROD
     // TODO: jlevine - Uncomment if you think you need one (maybe '/' or '/static/', or '/assets/')
     // publicPath: '/'
 
@@ -47,12 +45,12 @@ module.exports = {
     ]
   },
   plugins: [
-        new CompressionPlugin({
-            asset: "bundle.gz[query]",
-            algorithm: "gzip",
-            test: /\.js$|\.html$|\.css$/,
-            threshold: 10240,
-            minRatio: 0.8
-        })
-    ]
-};
+    new CompressionPlugin({
+      asset: 'bundle.gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.html$|\.css$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  ]
+}

@@ -7,9 +7,31 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "webpack",
-    "test": "test",
-    "build-dev": "webpack --progress --watch"
+    "// Housekeeping": "",
+    "clean": "npm-run-all clean-dist clean-build",
+    "clean-build": "rimraf ./build && mkdir build",
+    "clean-dist": "rimraf ./dist && mkdir dist",
+
+    "TODO: jlevine - Add starting/restarting Flask here?": "",
+    "// Development": "",
+    "lint": "standard",
+    "build": "webpack --progress --watch",
+    "start": "npm-run-all --parallel lint build",
+
+    "// Production": "",
+    "build:prod": "cross-env NODE_ENV=production webpack",
+    "start:prod": "npm-run-all --parallel lint build:prod",
+
+    "// Future use?": "",
+    "_start": "npm-run-all --parallel lint test:watch build",
+    "_prebuild:prod": "npm-run-all clean-build build-html:prod",
+    "_start:prod": "npm-run-all --parallel lint test build:prod",
+    "// Testing": "",
+    "_test": "mocha ./app/**/*.test.js --compilers js:babel-core/register",
+    "_test:watch": "npm run test -- --watch",
+    "_prebuild": "npm-run-all clean-dist build-html",
+    "_build-html": "node tools/buildHtml.js",
+    "_build-html:prod": "cross-env NODE_ENV=production node tools/buildHtml.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +39,7 @@
   },
   "keywords": [
     "goals",
-    "TODO: jlevine - Add clean script job."
+    "TODO: jlevine - Can we remove eslint because we already have standard?"
   ],
   "author": "Justin Levine",
   "license": "ISC",
@@ -37,6 +59,12 @@
     "babel-loader": "^6.3.2",
     "babel-preset-react": "^6.23.0",
     "compression-webpack-plugin": "^0.3.2",
+    "cross-env": "^3.1.4",
+    "eslint": "^3.16.0",
+    "eslint-watch": "^3.0.0",
+    "npm-run-all": "^4.0.1",
+    "rimraf": "^2.6.0",
+    "standard": "^8.6.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }

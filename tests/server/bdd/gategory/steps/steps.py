@@ -10,9 +10,9 @@ def step_impl(context):
 
 @when("I load up the Gategories page")
 def step_impl(context):
-    context.response = context.client.get('/goal-category')
+    context.response = context.client.get('/gategory')
 
 
 @then("I should see the Gategories title")
 def step_impl(context):
-    expect(Pq(context.response.data)('title').text()) == 'Goal Categories'
+    expect(Pq(context.response.data)('title').text()) == 'Gategories'

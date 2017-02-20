@@ -1,9 +1,9 @@
 from flask import Flask
 
-from views.goal_category import goal_category
+from views.gategory import gategory
 
 app = Flask(__name__)
-app.register_blueprint(goal_category)
+app.register_blueprint(gategory)
 
 if __name__ == '__main__':  # pragma: no cover
     app.run()

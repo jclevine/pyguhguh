@@ -4,3 +4,4 @@ source = .
 omit = venv/**/*.py, tests/**/*.py
 
 [report]
+sort = 'Miss'

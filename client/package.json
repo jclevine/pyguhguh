@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack",
     "test": "test",
-    "dev-build": "webpack --progress --watch"
+    "build-dev": "webpack --progress --watch"
   },
   "repository": {
     "type": "git",

@@ -100,3 +100,6 @@ venv2/
 
 # Node Stuff
 node_modules/
+
+# Webpack bundles
+**/bundle.js

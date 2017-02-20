@@ -7,6 +7,8 @@ const path = require('path');
 // };
 
 const PROD = process.env.NODE_ENV === 'production';
+const FLASK_JS_PATH = path.resolve(__dirname, '..', 'server', 'static', 'js');
+const OUTPUT_PATH = PROD ? path.resolve(__dirname, 'dist') : FLASK_JS_PATH;
 
 module.exports = {
   // TODO: jlevine - Change dev to 'cheap-module-eval-source-map' if compilation takes a while.
@@ -23,7 +25,7 @@ module.exports = {
   // TODO: jlevine - Uncomment if this file ends up short and you'd rather be precise rather than use default value.
   // target: 'web',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: OUTPUT_PATH,
     // TODO: jlevine - Uncomment if you feel there's a need for prod rename of output dir
     // path: PROD ? __dirname + '/build' : __dirname + '/dist',
     filename: 'bundle.js',
@@ -33,6 +35,7 @@ module.exports = {
     // publicPath: '/'
 
   },
+  // TODO: jlevine - Do we need this at all since we're using Flask?
   devServer: {
     // TODO: jlevine - Remove if you feel the need for more logs when building (default is 'info').
     // clientLogLevel: 'none',

@@ -1,5 +1,11 @@
 const path = require('path');
+var CompressionPlugin = require('compression-webpack-plugin');
 
+// TODO-FUTURE: jlevine - Maybe use CommonsChunk pluging if there's a lot of common code
+// TODO-FUTURE: jlevine - https://webpack.js.org/plugins/commons-chunk-plugin/
+// TODO-FUTURE: jlevine - Maybe use ExtractTextWebpackPlugin to separate css files from js file?
+// TODO-FUTURE: jlevine - https://webpack.js.org/plugins/extract-text-webpack-plugin/
+// TODO: jlevine - Add hash into bundle name, not for prod
 // TODO: jlevine - Do I need this for DefinePlugin below? Is the global used later in the code? If so, maybe put it
 // TODO: jlevine - right down where it's used or should all "prod determination" be up here?
 // const GLOBALS = {
@@ -35,33 +41,18 @@ module.exports = {
     // publicPath: '/'
 
   },
-  // TODO: jlevine - Do we need this at all since we're using Flask?
-  devServer: {
-    // TODO: jlevine - Remove if you feel the need for more logs when building (default is 'info').
-    // clientLogLevel: 'none',
-    // TODO: jlevine - Maybe change this to just 'server', or maybe 'assets' to stay consistent?
-    contentBase: path.join(__dirname, 'server', 'static', 'js'),
-    // TODO: jlevine - Uncomment if you need to compile less because it's slow.
-    lazy: true,
-    filename: 'bundle.js',
-    // TODO: jlevine - Uncomment if this is not default, or you want to be explicit.
-    // hot: true
-    // TODO: jlevine - Uncomment: change to false if you hate them, true if you need it and want it.
-    // noInfo: true
-    // TODO: jlevine - Add proxy stuff if you end up needing it when the API starts.
-    // TODO: jlevine - Uncomment if you need to public path. Make sure it's the same as the output.publicPath
-    // TODO: jlevine - Pissibilities: '/' or '/static/', or '/assets/'
-    publicPath: '/',
-    // TODO: jlevine - Remove if the default seems to be false
-    quiet: false,
-    // TODO: jlevine - Uncomment if you want custom messages (eg. only errors) being sent out (remove noInfo and quiet)
-    // stats: 'errors-only'
-    // TODO: jlevine - Remove if you don't seem to need to watch it.web
-    watchContentBase: true
-  },
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader' }
     ]
-  }
+  },
+  plugins: [
+        new CompressionPlugin({
+            asset: "bundle.gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.html$|\.css$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    ]
 };

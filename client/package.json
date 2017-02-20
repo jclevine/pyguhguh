@@ -16,7 +16,8 @@
     "url": "git+https://github.com/jclevine/guhguh.git"
   },
   "keywords": [
-    "goals"
+    "goals",
+    "TODO: jlevine - Add clean script job."
   ],
   "author": "Justin Levine",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "babel-preset-react": "^6.23.0",
+    "compression-webpack-plugin": "^0.3.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }

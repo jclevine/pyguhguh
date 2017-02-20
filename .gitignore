@@ -102,4 +102,4 @@ venv2/
 node_modules/
 
 # Webpack bundles
-**/bundle.js
+**/bundle.*

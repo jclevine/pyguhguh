@@ -37,10 +37,7 @@
     "type": "git",
     "url": "git+https://github.com/jclevine/guhguh.git"
   },
-  "keywords": [
-    "goals",
-    "TODO: jlevine - Can we remove eslint because we already have standard?"
-  ],
+  "keywords": [ "goals" ],
   "author": "Justin Levine",
   "license": "ISC",
   "bugs": {

@@ -15,6 +15,10 @@ var CompressionPlugin = require('compression-webpack-plugin')
 const PROD = process.env.NODE_ENV === 'production'
 const FLASK_JS_PATH = path.resolve(__dirname, '..', 'server', 'static', 'js')
 const OUTPUT_PATH = PROD ? path.resolve(__dirname, 'dist') : FLASK_JS_PATH
+// TODO-FUTURE: jlevine - For prod, use the hash to place it into the filename in the HTML. See
+// TODO-FUTURE: jlevine - recordsPath: https://webpack.github.io/docs/configuration.html#recordspath-recordsinputpath-recordsoutputpath
+// TODO-FUTURE: jlevine - caching: https://webpack.github.io/docs/long-term-caching.html
+const OUTPUT_FILENAME = PROD ? '[bundle].[hash].js' : '[name].js'
 
 module.exports = {
   // TODO: jlevine - Change dev to 'cheap-module-eval-source-map' if compilation takes a while.
@@ -32,7 +36,7 @@ module.exports = {
   // target: 'web',
   output: {
     path: OUTPUT_PATH,
-    filename: 'bundle.js',
+    filename: OUTPUT_FILENAME,
     // TODO: jlevine - I think this is a performance optimization, so only do it for prod?
     devtoolLineToLine: PROD
     // TODO: jlevine - Uncomment if you think you need one (maybe '/' or '/static/', or '/assets/')
@@ -46,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin({
-      asset: 'bundle.gz[query]',
+      asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.html$|\.css$/,
       threshold: 10240,
